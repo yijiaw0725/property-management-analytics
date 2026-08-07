@@ -213,7 +213,11 @@ file_name = "30_Day_Maintenance_Metrics.xlsx"
 file_path = os.path.join(download_folder, file_name)
 
 if __name__ == "__main__":
-    download_data("yijia.wang@openhouse-group.com", "13861887922Aa@#")
+    import os
+    username = os.environ.get("PW_USERNAME")
+    password = os.environ.get("PW_PASSWORD")
+    if not username or not password:
+        raise SystemExit("Set PW_USERNAME and PW_PASSWORD environment variables first.")
     if os.path.exists(file_path):
         data = process_data(file_path)
         generate_visualization(data)
